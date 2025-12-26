@@ -4,7 +4,7 @@ derived_columns:
   RECORD_SOURCE: '!exg_expertsgroup'
   LOAD_TS: coalesce(exg_deleted_at, exg_modified_at, exg_created_at) + interval '1 day'
   EXG_MGR_START: coalesce(exg_modified_at, exg_created_at)
-  EXG_MGR_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh:mm:ss')
+  EXG_MGR_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
 hashed_columns:
   HK_EXPERTSGROUP: 'exg_rowid'
   HK_MANAGER: 'manager_bk'

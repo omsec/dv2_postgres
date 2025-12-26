@@ -4,7 +4,7 @@ derived_columns:
   RECORD_SOURCE: '!srv_servicerequest'
   LOAD_TS: coalesce(srv_deleted_at, srv_modified_at, srv_created_at) + interval '1 day'
   SRV_CST_START: coalesce(srv_modified_at, srv_created_at)
-  SRV_CST_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh:mm:ss')
+  SRV_CST_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
   SRV_CST_EFFECTIVE_FROM: coalesce(srv_modified_at, srv_created_at)
 hashed_columns:
   HK_SERVICEREQUEST: 'srv_request_no'

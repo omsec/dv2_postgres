@@ -5,7 +5,7 @@ derived_columns:
   RECORD_SOURCE: '!cst_customer'
   LOAD_TS: coalesce(cst_deleted_at, cst_modified_at, cst_created_at) + interval '1 day'
   CST_CMP_START: coalesce(cst_modified_at, cst_created_at)
-  CST_CMP_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh:mm:ss')
+  CST_CMP_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
 hashed_columns:
   HK_CUSTOMER: 'cst_customer_no'
   HK_CAMPAIGN: 'cmp_campaign_bk'

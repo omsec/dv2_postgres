@@ -4,9 +4,9 @@ derived_columns:
   RECORD_SOURCE: '!ord_order'
   LOAD_TS: coalesce(ord_deleted_at, ord_modified_at, ord_created_at) + interval '1 day'
   ORD_CST_SALESMAN_START: coalesce(ord_modified_at, ord_created_at)
-  ORD_CST_SALESMAN_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh:mm:ss')
+  ORD_CST_SALESMAN_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
   ORD_ADR_START: coalesce(ord_modified_at, ord_created_at)
-  ORD_ADR_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh:mm:ss')
+  ORD_ADR_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
 hashed_columns:
   HK_ORDER: 'ord_order_no'
   HK_CUSTOMER: 'customer_bk'

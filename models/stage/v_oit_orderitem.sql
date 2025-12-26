@@ -4,7 +4,7 @@ derived_columns:
   RECORD_SOURCE: '!oit_orderitem'
   LOAD_TS: coalesce(oit_deleted_at, oit_modified_at, oit_created_at) + interval '1 day'
   OIT_ORD_START: coalesce(oit_modified_at, oit_created_at)
-  OIT_ORD_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh:mm:ss')
+  OIT_ORD_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
   OIT_ORD_EFFECTIVE_FROM: coalesce(oit_modified_at, oit_created_at)
 hashed_columns:
   HK_ORDER_ORDERITEM:

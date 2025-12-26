@@ -4,7 +4,7 @@ derived_columns:
   RECORD_SOURCE: '!cxg_customer_expertsgroup'
   LOAD_TS: coalesce(cxg_deleted_at, cxg_modified_at, cxg_created_at) + interval '1 day'
   cxg_MGR_START: coalesce(cxg_modified_at, cxg_created_at)
-  cxg_MGR_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh:mm:ss')
+  cxg_MGR_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
 hashed_columns:
   HK_CUSTOMER: 'cst_customer_bk'
   HK_EXPERTSGROUP: 'exg_group_bk'

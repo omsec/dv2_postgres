@@ -4,7 +4,7 @@ derived_columns:
   RECORD_SOURCE: '!PRD_PRODUCT'
   LOAD_TS: coalesce(prd_deleted_at, prd_modified_at, prd_created_at) + interval '1 day'
   PRD_PCT_START: coalesce(prd_modified_at, prd_created_at)
-  PRD_PCT_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh:mm:ss')
+  PRD_PCT_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
 hashed_columns:
   HK_PRODUCT: 'product_bk'
   HK_PRODUCTCATEGORY: 'productcategory_bk'
