@@ -21,19 +21,19 @@ with dates as (
 		hub.hk_customer,
 		hub.load_ts hub_load_ts,
 		sat1.load_ts as sat1_load_ts,
-		/*sat2.load_ts as sat2_load_ts,*/
-		sat3.load_ts as sat3_load_ts,
-		sat4.load_ts as sat4_load_ts
+		sat2.load_ts as sat2_load_ts,
+		sat3.load_ts as sat3_load_ts
+		/*sat4.load_ts as sat4_load_ts,*/
 	from {{ ref('h_customer') }} hub
 	-- use outer joins where necessary (eg. codes or users)
 	join {{ ref('s_customer') }} sat1
 		on sat1.hk_customer = hub.hk_customer
-	/*join {{ ref('s_customerinterest') }} sat2
-		on sat2.hk_customer = hub.hk_customer*/
-	join {{ ref('s_customer_extended') }} sat3
+	join {{ ref('s_customer_extended') }} sat2
+		on sat2.hk_customer = hub.hk_customer
+	join {{ ref('s_customer_meta') }} sat3
 		on sat3.hk_customer = hub.hk_customer
-	join {{ ref('s_customer_meta') }} sat4
-		on sat4.hk_customer = hub.hk_customer
+	/*join {{ ref('s_customerinterest') }} sat4
+		on sat4.hk_customer = hub.hk_customer*/
 ),
 dates_unpivot as (
 	select distinct
@@ -44,9 +44,9 @@ dates_unpivot as (
 		values
 			(dts.hub_load_ts),
 			(dts.sat1_load_ts),
-			/*(dts.sat2_load_ts),*/
-			(dts.sat3_load_ts),
-			(dts.sat4_load_ts)
+			(dts.sat2_load_ts),
+			(dts.sat3_load_ts)
+			/*(dts.sat4_load_ts),*/
 		) as t(load_ts)
 ),
 periods as (
@@ -70,24 +70,24 @@ periods_data as (
 		dts.load_ts,
 		dts.loadend_ts,
 		max(sat1.load_ts) as sat1_load_ts,
-		/*tmax(sat2.load_ts) as sat2_load_ts,*/
-		max(sat3.load_ts) as sat3_load_ts,
-		max(sat4.load_ts) as sat4_load_ts
+		max(sat2.load_ts) as sat2_load_ts,
+		max(sat3.load_ts) as sat3_load_ts
+		/*tmax(sat4.load_ts) as sat4_load_ts,*/
 	from periods dts
 	join {{ ref('h_customer') }} hub
 		on hub.hk_customer = dts.hk_customer
 	join {{ ref('v_customer') }} sat1
 		on  sat1.hk_customer = hub.hk_customer
 		and dts.load_ts between sat1.load_ts and sat1.loadend_ts
-	/*join {{ ref('v_customerinterest') }} sat2
+	join {{ ref('v_customer_extended') }} sat2
 		on  sat2.hk_customer = hub.hk_customer
-		and dts.load_ts between sat2.load_ts and sat2.loadend_ts*/
-	join {{ ref('v_customer_extended') }} sat3
+		and dts.load_ts between sat2.load_ts and sat2.loadend_ts
+	join {{ ref('v_customer_meta') }} sat3
 		on  sat3.hk_customer = hub.hk_customer
 		and dts.load_ts between sat3.load_ts and sat3.loadend_ts
-	join {{ ref('v_customer_meta') }} sat4
+	/*join {{ ref('v_customerinterest') }} sat4
 		on  sat4.hk_customer = hub.hk_customer
-		and dts.load_ts between sat4.load_ts and sat4.loadend_ts
+		and dts.load_ts between sat4.load_ts and sat4.loadend_ts*/
 group by
 	dts.hk_customer,
 	hub.cst_customer_no,
@@ -102,9 +102,9 @@ periods_merged as (
 		min(grp.load_ts) as load_ts,
 		max(grp.loadend_ts) as loadend_ts,
 	grp.sat1_load_ts,
-	/*grp.sat2_load_ts,*/
-	grp.sat3_load_ts,
-	grp.sat4_load_ts
+	grp.sat2_load_ts,
+	grp.sat3_load_ts
+	/*grp.sat4_load_ts,*/
 	from (
 		--count occurances of values and arrange them in groups
 		select
@@ -114,21 +114,21 @@ periods_merged as (
 				- row_number() over(
 					partition by
 						ts.hk_customer,
-					ts.sat1_load_ts,
-					/*ts.sat2_load_ts,*/
-					ts.sat3_load_ts,
-					ts.sat4_load_ts
-				order by
-					ts.load_ts) as grp
-			from periods_data ts
+						ts.sat1_load_ts,
+						ts.sat2_load_ts,
+						ts.sat3_load_ts
+						/*ts.sat4_load_ts,*/
+					order by
+						ts.load_ts) as grp
+		from periods_data ts
 	) grp
 	group by
 		grp.hk_customer,
 		grp.cst_customer_no,
 		grp.sat1_load_ts,
-		/*grp.sat2_load_ts,*/
+		grp.sat2_load_ts,
 		grp.sat3_load_ts,
-		grp.sat4_load_ts,
+		/*grp.sat4_load_ts,*/
 		grp.grp
 )
 select

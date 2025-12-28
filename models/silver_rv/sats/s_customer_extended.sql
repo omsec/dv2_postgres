@@ -13,6 +13,7 @@ src_payload:
   - "cst_attr3"
   - "cst_attr_int"
   - "cst_attr_str"
+  - "cod_level"
 src_ldts: "LOAD_TS"
 src_source: "RECORD_SOURCE"
 {%- endset -%}

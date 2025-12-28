@@ -32,8 +32,12 @@ with ts as (
 		t.cst_attr1,
 		t.cst_attr2,
 		t.cst_attr3,
+		t.cod_source,
+		t.txt_source_en,
 		t.cst_attr_int,
 		t.cst_attr_str,
+		t.cod_level,
+		t.txt_level_en,
 		t.dwh_applied_issues,
 		t.cst_age
 	from {{ ref('ax_customer') }} t

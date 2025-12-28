@@ -50,9 +50,13 @@ select
 	t.cst_attr1,
 	t.cst_attr2,
 	t.cst_attr3,
+	t.cod_source,
+	t.txt_source_en,
 	t.cst_attr_int,
 	t.cst_attr_str,
+	t.cod_level,
+	t.txt_level_en,
 	-- optional: patch infos
 	array['jira-1000', 'jira-2000', 'jira-3000']::text[] as dwh_applied_issues
-from {{ ref('fe_customer') }} t
+from {{ ref('fd_customer') }} t
 --where t.hk_customer = 'FE69100DB52F4EA1A1982D96E779A8D9E31095F2824D86237EEAE4208DD07369'

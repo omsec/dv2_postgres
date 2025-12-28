@@ -28,6 +28,8 @@ casted as (
         t.cst_attr1,
         t.cst_attr2,
         t.cst_attr3,
+        cast(t.cod_level as varchar(20)) as cod_level,
+        cast(t.cod_source as varchar(20)) as cod_source,
         t.cst_attr_int,
         t.cst_attr_str
     from rawtable t

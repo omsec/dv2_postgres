@@ -14,6 +14,7 @@ src_payload:
   - "usr_modified_by"
   - "cst_deleted_at"
   - "usr_deleted_by"
+  - "cod_source"
 src_ldts: "LOAD_TS"
 src_source: "RECORD_SOURCE"
 {%- endset -%}

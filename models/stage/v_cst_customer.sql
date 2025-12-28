@@ -31,6 +31,7 @@ hashed_columns:
       - 'usr_modified_by'
       - 'cst_deleted_at'
       - 'usr_deleted_by'
+      - 'cod_source'
   CUSTOMER_EXTENDED_HASHDIFF:
     is_hashdiff: true
     columns:
@@ -40,6 +41,7 @@ hashed_columns:
         - 'cst_attr3'
         - 'cst_attr_int'
         - 'cst_attr_str'
+        - 'cod_level'
   CUSTOMER_CAMPAIGN_HASHDIFF:
     is_hashdiff: true
     columns:
