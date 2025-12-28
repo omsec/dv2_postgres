@@ -3,21 +3,23 @@
 {%- set yaml_metadata -%}
 source_model: "v_cse_customer_employee"
 src_pk: "HK_CUSTOMER_EMPLOYEE"
-src_hashdiff: 
+src_hashdiff:
   source_column: "RH_CUSTOMER_EMPLOYEE"
   alias: "ROWHASH"
 src_payload:
+    - 'hk_customer'
+    - 'hk_employee'
+    - 'cod_role'
     - 'cse_created_at'
     - 'usr_created_by'
     - 'cse_modified_at'
     - 'usr_modified_by'
     - 'cse_deleted_at'
     - 'usr_deleted_by'
-    - 'cod_role'
     - 'cse_valid_from'
     - 'cse_valid_to'
     - 'cse_primary'
-src_eff: EFFECTIVE_FROM    
+src_eff: EFFECTIVE_FROM
 src_ldts: "LOAD_TS"
 src_source: "RECORD_SOURCE"
 {%- endset -%}
