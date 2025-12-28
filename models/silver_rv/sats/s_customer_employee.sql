@@ -2,14 +2,12 @@
 
 {%- set yaml_metadata -%}
 source_model: "v_cse_customer_employee"
-src_pk: "HK_CUSTOMER_EMPLOYEE"
+src_pk: "hk_customer_employee"
 src_hashdiff:
-  source_column: "RH_CUSTOMER_EMPLOYEE"
-  alias: "ROWHASH"
+  source_column: "rh_customer_employee"
+  alias: "rowhash"
 src_payload:
-    - 'hk_customer'
-    - 'hk_employee'
-    - 'cod_role'
+    - 'cse_rowid'
     - 'cse_created_at'
     - 'usr_created_by'
     - 'cse_modified_at'
@@ -19,9 +17,9 @@ src_payload:
     - 'cse_valid_from'
     - 'cse_valid_to'
     - 'cse_primary'
-src_eff: EFFECTIVE_FROM
-src_ldts: "LOAD_TS"
-src_source: "RECORD_SOURCE"
+src_eff: effective_from
+src_ldts: "load_ts"
+src_source: "record_source"
 {%- endset -%}
 
 {% set metadata_dict = fromyaml(yaml_metadata) %}

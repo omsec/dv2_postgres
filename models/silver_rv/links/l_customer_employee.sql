@@ -1,7 +1,7 @@
 {{ config(materialized='incremental') }}
 
 {%- set source_model = "v_cse_customer_employee" -%}
-{%- set src_pk = "HK_CUSTOMER_EMPLOYEE" -%}
+{%- set src_pk = "hk_customer_employee" -%}
 {%- set src_fk = ["hk_customer", "hk_employee", "cod_role"] -%}
 {%- set src_ldts = "load_ts" -%}
 {%- set src_source = "record_source" -%}
