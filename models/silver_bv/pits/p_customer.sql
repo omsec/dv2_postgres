@@ -1,3 +1,20 @@
+-- PITs are implemented as incremental dbt models
+-- this way, the latest open record (2099) is ended before a new state is inserted
+-- Remember, for performance reasons, and with respect of deleted_ts these periods
+-- are physically saved as a table rather than calculated as a view.
+-- (deleted_ts is already applied in the BV-views)
+
+-- Codes are be spared out, since this might be static data and onyl typos are
+-- corrected over time. So we might want to apply the latest code descriptions
+-- over the entity's entire history.
+
+{{
+    config(
+        materialized='incremental',
+        unique_key=['hk_customer', 'load_ts']
+    )
+}}
+
 with dates as (
 	-- collect all timestamps when changes happened (detected in data warehouse)
 	select

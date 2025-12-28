@@ -53,9 +53,9 @@ left outer join {{ ref('v_customer_meta') }} as sat4
 left outer join {{ ref('r_user') }} usrC
 	on usrC.usr_rowid = sat4.usr_created_by
 left outer join {{ ref('r_user') }} usrM
-	on usrC.usr_rowid = sat4.usr_modified_by
+	on usrM.usr_rowid = sat4.usr_modified_by
 left outer join {{ ref('r_user') }} usrD
-	on usrC.usr_rowid = sat4.usr_deleted_by
+	on usrD.usr_rowid = sat4.usr_deleted_by
 -- Code Look-ups (latest)
 left outer join {{ ref('v_codedefinition')}} cdGenderEN
 	on  cdGenderEN.cog_group = 1
