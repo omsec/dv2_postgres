@@ -13,6 +13,7 @@ select
 	coalesce(t.prd_standard_cost, 0) as prd_standard_cost,
 	coalesce(t.prd_list_price, 0) as prd_list_price,
 	coalesce(t.prd_sold_until, to_date('2099-12-31', 'yyyy-mm-dd')) as prd_sold_until,
+	t.txt_complexity_en,
 	t.load_ts,
 	--t.record_source,
 	t.loadend_ts

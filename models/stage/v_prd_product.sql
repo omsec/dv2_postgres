@@ -3,8 +3,6 @@ source_model: 'prd_product'
 derived_columns:
   RECORD_SOURCE: '!PRD_PRODUCT'
   LOAD_TS: coalesce(prd_deleted_at, prd_modified_at, prd_created_at) + interval '1 day'
-  PRD_PCT_START: coalesce(prd_modified_at, prd_created_at)
-  PRD_PCT_END: to_timestamp('2099-12-31 23:59:59', 'yyyy-mm-dd hh24:mi:ss')
 hashed_columns:
   HK_PRODUCT: 'product_bk'
   HK_PRODUCTCATEGORY: 'productcategory_bk'
@@ -25,11 +23,14 @@ hashed_columns:
       - 'prd_standard_cost'
       - 'prd_list_price'
       - 'prd_sold_until'
+      - 'cod_complexity'
   RH_PRODUCT_PRODUCTCATEGORY:
     is_hashdiff: true
     columns:
       - 'product_bk'
       - 'productcategory_bk'
+      - 'prd_category_valid_from'
+      - 'prd_category_valid_to'
 
 {%- endset -%}
 

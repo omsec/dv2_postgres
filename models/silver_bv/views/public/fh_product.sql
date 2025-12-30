@@ -12,6 +12,7 @@ with ts as (
 		t.prd_standard_cost,
 		t.prd_list_price,
 		t.prd_sold_until,
+		t.txt_complexity_en,
 		t.load_ts,
 		coalesce(
 			t.prd_deleted_at,

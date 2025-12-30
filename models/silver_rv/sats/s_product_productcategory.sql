@@ -3,14 +3,14 @@
 {%- set yaml_metadata -%}
 source_model: "v_prd_product"
 src_pk: "HK_PRODUCT_PRODUCTCATEGORY"
-src_hashdiff: 
+src_hashdiff:
   source_column: "RH_PRODUCT_PRODUCTCATEGORY"
   alias: "ROWHASH"
 src_payload:
     - 'HK_PRODUCT'
     - 'HK_PRODUCTCATEGORY'
-    - 'PRD_PCT_START'
-    - 'PRD_PCT_END'
+    - 'prd_category_valid_from'
+    - 'prd_category_valid_to'
 src_ldts: "load_ts"
 src_source: "record_source"
 {%- endset -%}

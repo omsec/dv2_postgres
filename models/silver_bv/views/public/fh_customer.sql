@@ -10,6 +10,7 @@ with ts as (
 			lead(t.load_ts) over(partition by t.hk_customer order by t.load_ts) - interval '1 ms',
 			to_timestamp('2099-12-31 23:59:59.999', 'yyyy-mm-dd hh24:mi:ss.fff')
 		) as loadend_ts,
+		t.cst_rowid,
 		t.cst_created_at,
 		t.usr_created_by,
 		t.usr_created_by_login_name,

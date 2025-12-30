@@ -10,6 +10,7 @@ select
 	t.cst_customer_no,
 	t.load_ts,
 	t.loadend_ts,
+	t.cst_rowid,
 	t.cst_created_at,
 	t.usr_created_by,
 	-- jira-12345:

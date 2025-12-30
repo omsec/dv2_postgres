@@ -3,7 +3,7 @@
 {%- set yaml_metadata -%}
 source_model: "v_prd_product"
 src_pk: "HK_PRODUCT"
-src_hashdiff: 
+src_hashdiff:
   source_column: "RH_PRODUCT"
   alias: "HASHDIFF"
 src_payload:
@@ -18,6 +18,7 @@ src_payload:
     - 'prd_standard_cost'
     - 'prd_list_price'
     - 'prd_sold_until'
+    - 'cod_complexity'
 src_ldts: "load_ts"
 src_source: "record_source"
 {%- endset -%}

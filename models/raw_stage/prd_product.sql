@@ -20,10 +20,12 @@ select
 	t.prd_list_price,
 	t.prd_sold_until,
 	t.pct_category,
+	t.prd_category_valid_from,
+	t.prd_category_valid_to,
+	cast(t.cod_complexity as varchar(20)) as cod_complexity,
     -- derrived
     cast(t.prd_rowid as varchar(20)) as product_bk,
     coalesce(pct.productcategory_bk, '$OPTIONAL') as productcategory_bk
 from rawtable t
 left outer join {{ ref('pct_productcategory')}} pct
     on pct.pct_rowid = t.pct_category
-    

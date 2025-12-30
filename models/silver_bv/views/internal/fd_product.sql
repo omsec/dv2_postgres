@@ -8,7 +8,7 @@ select
 	sPrd.prd_standard_cost,
 	sPrd.prd_list_price,
 	sPrd.prd_sold_until,
-	--sPrd.txt_complexity_en,
+	coalesce(cdComplexity.cod_text, sPrd.cod_complexity) as txt_complexity_en,
 	bPrd.hk_productcategory,
 	bPrd.productcategory_bk,
 	sPct.pct_name,
@@ -36,3 +36,9 @@ left outer join {{ ref('r_user') }} usrM
 	on usrM.usr_rowid = sPrd.usr_modified_by
 left outer join {{ ref('r_user') }} usrD
 	on usrD.usr_rowid = sPrd.usr_deleted_by
+-- Code Look-ups (latest)
+left outer join {{ ref('v_codedefinition')}} cdComplexity
+	on  cdComplexity.cog_group = 9
+	and cdComplexity.cod_value = sPrd.cod_complexity
+	and cdComplexity.cod_language = 10
+	and cdComplexity.loadend_ts = to_timestamp('2099-12-31 23:59:59.999', 'yyyy-mm-dd hh24:mi:ss.fff')

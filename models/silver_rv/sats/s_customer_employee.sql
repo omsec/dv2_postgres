@@ -7,6 +7,9 @@ src_hashdiff:
   source_column: "rh_customer_employee"
   alias: "rowhash"
 src_payload:
+    - 'customer_bk'
+    - 'employee_bk'
+    - 'cod_role'
     - 'cse_rowid'
     - 'cse_created_at'
     - 'usr_created_by'
