@@ -1,5 +1,5 @@
 select
-	bPrd.hk_product_snapshot as d_product,
+	bPrd.hk_product_snapshot,
 	bPrd.hk_product,
 	bPrd.product_bk,
 	bPrd.load_ts,
