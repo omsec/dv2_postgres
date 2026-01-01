@@ -2,11 +2,17 @@
 
 {%- set yaml_metadata -%}
 source_model: "v_oit_orderitem"
-src_pk: "HK_ORDER_ORDERITEM"
+src_pk: "hk_order_orderitem"
 src_hashdiff:
-  source_column: "RH_ORD_OIT"
-  alias: "ROWHASH"
+  source_column: "rh_ord_oit"
+  alias: "rowhash"
 src_payload:
+    - 'hk_order'
+    - 'hk_product'
+    - 'hk_warehouse'
+    - 'ord_order'
+    - 'prd_product'
+    - 'wrh_warehouse'
     - 'oit_rowid'
     - 'oit_created_at'
     - 'usr_created_by'
@@ -18,11 +24,11 @@ src_payload:
     - 'oit_unit_price'
     - 'oit_attr_int'
     - 'oit_attr_str'
-    - 'OIT_ORD_START'
-    - 'OIT_ORD_END'
-src_eff: "OIT_ORD_EFFECTIVE_FROM"
-src_ldts: "LOAD_TS"
-src_source: "RECORD_SOURCE"
+    - 'oit_ord_start'
+    - 'oit_ord_end'
+src_eff: "oit_ord_effective_from"
+src_ldts: "load_ts"
+src_source: "record_source"
 {%- endset -%}
 
 {% set metadata_dict = fromyaml(yaml_metadata) %}
