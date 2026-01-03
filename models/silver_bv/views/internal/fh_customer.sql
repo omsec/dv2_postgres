@@ -41,7 +41,7 @@ with ts as (
 		t.txt_level_en,
 		t.dwh_applied_issues,
 		t.cst_age
-	from {{ ref('ax_customer') }} t
+	from {{ ref('br_customer') }} t
 )
 select *
 from ts

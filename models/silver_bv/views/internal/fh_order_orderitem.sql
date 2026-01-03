@@ -1,5 +1,13 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key=['hk_order_orderitem']
+    )
+}}
+
+
 with ts as (
-	select 
+	select
         t.hk_order_orderitem,
         t.load_ts,
         t.loadend_ts,
