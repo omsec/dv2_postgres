@@ -1,5 +1,10 @@
 with ts as (
 	select
+		-- enable this for use in dimension tables
+		decode(md5(concat_ws('||'::text,
+		coalesce(nullif(trim(both from t.hk_employee::character varying), ''::text), '^^'::text),
+		coalesce(nullif(trim(both from t.load_ts::character varying), ''::text), '^^'::text)
+		)), 'hex'::text) as hk_employee_snapshot,
 		t.hk_employee,
 		t.emp_employee_no,
 		t.rowhash,
