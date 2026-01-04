@@ -76,16 +76,16 @@ periods_data as (
 	from periods dts
 	join {{ ref('h_customer') }} hub
 		on hub.hk_customer = dts.hk_customer
-	join {{ ref('v_customer') }} sat1
+	join {{ ref('vs_customer') }} sat1
 		on  sat1.hk_customer = hub.hk_customer
 		and dts.load_ts between sat1.load_ts and sat1.loadend_ts
-	join {{ ref('v_customer_extended') }} sat2
+	join {{ ref('vs_customer_extended') }} sat2
 		on  sat2.hk_customer = hub.hk_customer
 		and dts.load_ts between sat2.load_ts and sat2.loadend_ts
-	join {{ ref('v_customer_meta') }} sat3
+	join {{ ref('vs_customer_meta') }} sat3
 		on  sat3.hk_customer = hub.hk_customer
 		and dts.load_ts between sat3.load_ts and sat3.loadend_ts
-	/*join {{ ref('v_customerinterest') }} sat4
+	/*join {{ ref('vs_customerinterest') }} sat4
 		on  sat4.hk_customer = hub.hk_customer
 		and dts.load_ts between sat4.load_ts and sat4.loadend_ts*/
 group by

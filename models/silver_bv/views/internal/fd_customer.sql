@@ -45,13 +45,13 @@ select
 	sat3.loadend_ts as sat3_loadend_ts
 from {{ ref('p_customer') }} as pit
 -- using outer joins, since we deal with different history-lines
-left outer join {{ ref('v_customer') }} as sat1
+left outer join {{ ref('vs_customer') }} as sat1
 	on  sat1.hk_customer = pit.hk_customer
 	and sat1.load_ts = pit.sat1_load_ts
-left outer join {{ ref('v_customer_extended') }} as sat2
+left outer join {{ ref('vs_customer_extended') }} as sat2
 	on  sat2.hk_customer = pit.hk_customer
 	and sat2.load_ts = pit.sat2_load_ts
-left outer join {{ ref('v_customer_meta') }} as sat3
+left outer join {{ ref('vs_customer_meta') }} as sat3
 	on  sat3.hk_customer = pit.hk_customer
 	and sat3.load_ts = pit.sat3_load_ts
 -- User Look-ups (latest; references are not historized)
@@ -62,22 +62,22 @@ left outer join {{ ref('r_user') }} usrM
 left outer join {{ ref('r_user') }} usrD
 	on usrD.usr_rowid = sat3.usr_deleted_by
 -- Code Look-ups (latest)
-left outer join {{ ref('v_codedefinition')}} cdGenderEN
+left outer join {{ ref('vs_codedefinition')}} cdGenderEN
 	on  cdGenderEN.cog_group = 1
 	and cdGenderEN.cod_value = sat1.cod_gender
 	and cdGenderEN.cod_language = 10
 	and cdGenderEN.loadend_ts = to_timestamp('2099-12-31 23:59:59.999', 'yyyy-mm-dd hh24:mi:ss.fff')
-left outer join {{ ref('v_codedefinition')}} cdLanguageEN
+left outer join {{ ref('vs_codedefinition')}} cdLanguageEN
 	on  cdLanguageEN.cog_group = 2
 	and cdLanguageEN.cod_value = sat1.cod_language
 	and cdLanguageEN.cod_language = 10
 	and cdLanguageEN.loadend_ts = to_timestamp('2099-12-31 23:59:59.999', 'yyyy-mm-dd hh24:mi:ss.fff')
-left outer join {{ ref('v_codedefinition')}} cdLevelEN
+left outer join {{ ref('vs_codedefinition')}} cdLevelEN
 	on  cdLevelEN.cog_group = 10
 	and cdLevelEN.cod_value = sat2.cod_level
 	and cdLevelEN.cod_language = 10
 	and cdLevelEN.loadend_ts = to_timestamp('2099-12-31 23:59:59.999', 'yyyy-mm-dd hh24:mi:ss.fff')
-left outer join {{ ref('v_codedefinition')}} cdSourceEN
+left outer join {{ ref('vs_codedefinition')}} cdSourceEN
 	on  cdSourceEN.cog_group = 11
 	and cdSourceEN.cod_value = sat3.cod_source
 	and cdSourceEN.cod_language = 10

@@ -30,7 +30,7 @@ select
     sat.oit_ord_effective_from
     --sat.record_source
 -- link table omitted, as it's not needed
-from {{ ref ('v_order_orderitem')}} sat
+from {{ ref ('vs_order_orderitem')}} sat
 -- User Look-ups (latest; references are not historized)
 left outer join {{ ref('r_user') }} usrC
 	on usrC.usr_rowid = sat.usr_created_by

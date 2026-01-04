@@ -18,7 +18,7 @@ select
 	sat.load_ts,
 	sat.loadend_ts
 from {{ ref('h_order') }} hub
-join {{ ref('v_order') }} sat
+join {{ ref('vs_order') }} sat
 	on sat.hk_order = hub.hk_order
 -- User Look-ups (latest; references are not historized)
 left outer join {{ ref('r_user') }} usrC
@@ -28,7 +28,7 @@ left outer join {{ ref('r_user') }} usrM
 left outer join {{ ref('r_user') }} usrD
 	on usrD.usr_rowid = sat.usr_deleted_by
 -- Code Look-ups (latest)
-left outer join {{ ref('v_codedefinition')}} cdStatusEN
+left outer join {{ ref('vs_codedefinition')}} cdStatusEN
 	on  cdStatusEN.cog_group = 5
 	and cdStatusEN.cod_value = sat.cod_status
 	and cdStatusEN.cod_language = 10

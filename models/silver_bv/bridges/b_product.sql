@@ -94,12 +94,12 @@ periods_data as (
 	join {{ ref('h_product') }} hPrd
 		on hPrd.hk_product = dts.hk_product
 	-- pct may have existed before prd: inner join removes these records
-	join {{ ref('v_product') }} sPrd
+	join {{ ref('vs_product') }} sPrd
 		on  sPrd.hk_product = hPrd.hk_product
 		and dts.load_ts between sPrd.load_ts and sPrd.loadend_ts
 	join {{ ref('l_product_productcategory') }} lPrdPct
 		on lPrdPct.hk_product = hPrd.hk_product
-	join {{ ref('v_product_productcategory') }} sPrdPct
+	join {{ ref('vs_product_productcategory') }} sPrdPct
 		on  sPrdPct.hk_product_productcategory = lPrdPct.hk_product_productcategory
 		and dts.load_ts between sPrdPct.load_ts and sPrdPct.loadend_ts
 	join {{ ref('h_productcategory') }} hPct
@@ -107,7 +107,7 @@ periods_data as (
 	-- optional hub's satellites must be outer-joined, since the entity may not have existed
 	-- at a given point in time, eg. deleted
 	-- (remember hub is timeless, ghost-keys will be used)
-	left outer join {{ ref('v_productcategory') }} sPct
+	left outer join {{ ref('vs_productcategory') }} sPct
 		on  sPct.hk_productcategory = hPct.hk_productcategory
 		and dts.load_ts between sPct.load_ts and sPct.loadend_ts
 	--order by dts.load_ts

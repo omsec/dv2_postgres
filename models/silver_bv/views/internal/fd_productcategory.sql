@@ -15,7 +15,7 @@ select
 	sat.load_ts,
 	sat.loadend_ts
 from {{ ref('h_productcategory') }} hub
-join {{ ref('v_productcategory') }} sat
+join {{ ref('vs_productcategory') }} sat
 	on sat.hk_productcategory = hub.hk_productcategory
 -- User Look-ups (latest; references are not historized)
 left outer join {{ ref('r_user') }} usrC

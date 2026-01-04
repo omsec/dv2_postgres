@@ -23,10 +23,10 @@ select
 	sPrd.usr_deleted_by,
 	coalesce(usrD.usr_login_name, sPrd.usr_deleted_by) as usr_deleted_by_login_name
 from {{ ref('b_product') }} bPrd
-join {{ ref('v_product') }} sPrd
+join {{ ref('vs_product') }} sPrd
 	on  sPrd.hk_product = bPrd.hk_product
 	and sPrd.load_ts = bPrd.sprd_load_ts
-left outer join {{ ref('v_productcategory') }} sPct
+left outer join {{ ref('vs_productcategory') }} sPct
 	on  sPct.hk_productcategory = bPrd.hk_productcategory
 	and sPct.load_ts = bPrd.spct_load_ts
 -- User Look-ups (latest; references are not historized)
@@ -37,7 +37,7 @@ left outer join {{ ref('r_user') }} usrM
 left outer join {{ ref('r_user') }} usrD
 	on usrD.usr_rowid = sPrd.usr_deleted_by
 -- Code Look-ups (latest)
-left outer join {{ ref('v_codedefinition')}} cdComplexity
+left outer join {{ ref('vs_codedefinition')}} cdComplexity
 	on  cdComplexity.cog_group = 9
 	and cdComplexity.cod_value = sPrd.cod_complexity
 	and cdComplexity.cod_language = 10

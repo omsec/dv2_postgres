@@ -24,7 +24,7 @@ select
 	sat.load_ts,
 	sat.loadend_ts
 from {{ ref('h_employee') }} hub
-join {{ ref('v_employee') }} sat
+join {{ ref('vs_employee') }} sat
 	on sat.hk_employee = hub.hk_employee
 -- User Look-ups (latest; references are not historized)
 left outer join {{ ref('r_user') }} usrC
