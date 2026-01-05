@@ -10,10 +10,6 @@
 -- >>> could not write to file "base/pgsql_tmp/pgsql_tmp6168.69": No space left on device
 -- increased mem config, see below
 
--- FÜR DEN MOMENT 'TABLE'
---> order: vs (änderungen am status erkennen)
---> orderitems (bzw. referenzen) letzter stand; fachlich zu definieren (änderung ja nur im status 'new' erlaubt)
-
 -- In degenrated facts, also include keys of the integrated dims (order)
 
 {{

@@ -39,3 +39,4 @@ left outer join {{ ref('r_user') }} usrM
 left outer join {{ ref('r_user') }} usrD
 	on usrD.usr_rowid = sat.usr_deleted_by
 -- Code Look-ups (latest)
+-- optional: look-up referenced BKs (hk_)

@@ -16,7 +16,10 @@ select
 	-- jira-12345:
 	case
 		when t.cst_created_at between to_date('2011-01-01', 'yyyy-mm-dd') and to_date('2020-02-15', 'yyyy-mm-dd') then
-            upper(substring(t.usr_created_by_login_name, 1, strpos(t.usr_created_by_login_name, '-') - 1))
+			case
+				when strpos(t.usr_created_by_login_name, '-') > 1 then
+            		upper(substring(t.usr_created_by_login_name, 1, strpos(t.usr_created_by_login_name, '-') - 1))
+			end
 		else
 			t.usr_created_by_login_name
 	end as usr_created_by_login_name,
@@ -25,7 +28,10 @@ select
     -- jira-12345:
 	case
 		when t.cst_modified_at between to_date('2011-01-01', 'yyyy-mm-dd') and to_date('2020-02-15', 'yyyy-mm-dd') then
-            upper(substring(t.usr_modified_by_login_name, 1, strpos(t.usr_modified_by_login_name, '-') - 1))
+			case
+				when strpos(t.usr_modified_by_login_name, '-') > 1 then
+            		upper(substring(t.usr_modified_by_login_name, 1, strpos(t.usr_modified_by_login_name, '-') - 1))
+			end
 		else
 			t.usr_modified_by_login_name
 	end as usr_modified_by_login_name,
@@ -34,7 +40,10 @@ select
     -- jira-12345:
 	case
 		when t.cst_deleted_at between to_date('2011-01-01', 'yyyy-mm-dd') and to_date('2020-02-15', 'yyyy-mm-dd') then
-            upper(substring(t.usr_deleted_by_login_name, 1, strpos(t.usr_deleted_by_login_name, '-') - 1))
+			case
+				when strpos(t.usr_deleted_by_login_name, '-') > 1 then
+            		upper(substring(t.usr_deleted_by_login_name, 1, strpos(t.usr_deleted_by_login_name, '-') - 1))
+			end
 		else
 			t.usr_deleted_by_login_name
 	end as usr_deleted_by_login_name,
