@@ -79,12 +79,22 @@ models:
       pits:
         +tags:
           - 'pit'
-    gold_im:
-      +schema: gold_im
+    gold_marts:
+      +schema: gold_marts
       +materialized: incremental
       marts:
         +tags:
           - 'mart'
+        d_date:
+          +enabled: true
+        f_sales:
+          +enabled: true
+    gold_reporting:
+      +schema: gold_reporting
+      +materialized: view
+      marts:
+        +tags:
+          - 'report'
         d_date:
           +enabled: true
         f_sales:

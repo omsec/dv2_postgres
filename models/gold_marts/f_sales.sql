@@ -37,19 +37,19 @@ with src as (
 		max(sOrdOit.oit_unit_price) as oit_unit_price,
 		sum(sOrdOit.oit_quantity * sOrdOit.oit_unit_price) as sum_unit_price
 	from {{ ref('l_order_customer_salesman') }} lOrdCstSm
-	join {{ ref('al_order_customer_salesman') }} sOrdCstSm
+	join {{ ref('xl_order_customer_salesman') }} sOrdCstSm
 		on sOrdCstSm.hk_order_customer_salesman = lOrdCstSm.hk_order_customer_salesman 
-	join {{ ref('al_order') }} xOrd
+	join {{ ref('xl_order') }} xOrd
 		on xOrd.hk_order = lOrdCstSm.hk_order
-	join {{ ref('al_customer') }} xCst
+	join {{ ref('xl_customer') }} xCst
 		on xCst.hk_customer = lOrdCstSm.hk_customer
-	join {{ ref('al_employee') }} xEmpSm
+	join {{ ref('xl_employee') }} xEmpSm
 		on xEmpSm.hk_employee = lOrdCstSm.hk_salesman
 	join {{ ref('l_order_orderitem') }} lOrdOit
 		on lOrdOit.hk_order = xOrd.hk_order
-	join {{ ref('al_order_orderitem') }} sOrdOit
+	join {{ ref('xl_order_orderitem') }} sOrdOit
 		on sOrdOit.hk_order_orderitem = lOrdOit.hk_order_orderitem
-	join {{ ref('al_product') }} xPrd
+	join {{ ref('xl_product') }} xPrd
 		on xPrd.hk_product = lOrdOit.hk_product
 	--where
 		-- status model:
