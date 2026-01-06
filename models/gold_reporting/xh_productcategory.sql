@@ -1,3 +1,3 @@
 select
 	t.*
-from {{ ref('fh_productcategory') }} t
+from {{ ref('ch_productcategory') }} t

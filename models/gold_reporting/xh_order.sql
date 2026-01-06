@@ -1,3 +1,3 @@
 select
 	t.*
-from {{ ref('fh_order') }} t
+from {{ ref('ch_order') }} t

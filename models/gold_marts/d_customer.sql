@@ -27,7 +27,7 @@ select
 	t.cst_attr1,
 	t.cst_attr2,
 	t.cst_attr3
-from {{ ref('fh_customer') }} t
+from {{ ref('ch_customer') }} t
 order by
 	t.load_ts,
 	t.loadend_ts

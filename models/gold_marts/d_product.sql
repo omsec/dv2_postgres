@@ -27,7 +27,7 @@ select
 	t.hk_productcategory,
 	t.productcategory_bk,
 	t.pct_name
-from{{ ref('fh_product') }} t
+from{{ ref('ch_product') }} t
 order by
 	t.load_ts,
 	cast(t.product_bk as int)
