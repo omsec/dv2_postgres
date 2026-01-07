@@ -15,7 +15,7 @@ select
 	cast(t.usr_deleted_by as varchar(20)) as usr_deleted_by,
 	-- payload
 	t.cst_customer,
-    t.cod_type,
+	cast(t.cod_type as varchar(20)) as cod_type,
     t.adr_priority,
     t.adr_address,
     t.adr_primary,
